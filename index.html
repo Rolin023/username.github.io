@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国名茶地图 </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 Panzoom 库 -->
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+</head>
+<body>
+    <h1>中国名茶地图</h1>
+
+    <!-- 外层容器作为视口 -->
+    <div id="map-viewport">
+        <!-- 内层容器应用背景图并进行缩放/平移 -->
+        <div id="map-content">
+            <!-- 茶叶标记将由 JavaScript 动态添加到这里 (map-content内部) -->
+        </div>
+    </div>
+
+    <!-- 信息弹出窗口 (保持不变) -->
+    <div id="info-popup" class="popup hidden">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="popup-title">茶叶信息</h2>
+            <img id="popup-img" src="" alt="茶叶图片" style="max-width: 100px; float: right; margin-left: 15px;">
+            <p id="popup-tea-info">这里是茶叶的介绍...</p>
+            <h3 id="popup-person-title">相关名人</h3>
+            <p id="popup-person-info">这里是相关名人的介绍...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

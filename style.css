@@ -1,0 +1,122 @@
+body {
+    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #386641;
+}
+
+/* 外层视口 */
+#map-viewport {
+    width: 800px; /* 视口宽度，可以根据需要调整 */
+    height: 600px; /* 视口高度，可以根据需要调整 */
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden; /* 关键：隐藏内部溢出的内容 */
+    cursor: grab; /* 提示用户可以拖动 */
+    position: relative; /* 确保内部绝对定位的元素正确 */
+    background-color: #e8f4e9; /* 可以给视口一个淡淡的背景色 */
+}
+
+#map-viewport:active {
+    cursor: grabbing; /* 拖动时的鼠标样式 */
+}
+
+/* 内层内容区域 - 应用背景图并可缩放/平移 */
+#map-content {
+    width: 100%; /* 初始宽度与视口相同 */
+    height: 100%; /* 初始高度与视口相同 */
+    background-image: url('china-map.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative; /* 标记是相对于此元素定位的 */
+    transform-origin: 0 0; /* 设置缩放的原点，Panzoom 可能需要 */
+    /* Panzoom 会通过 transform 来实现缩放和平移 */
+}
+
+.tea-marker {
+    position: absolute; /* 相对于 #map-content 定位 */
+    width: 12px;
+    height: 12px;
+    background-color: #6a994e;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    /* 添加一点边框使其更明显 */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* 鼠标悬停时放大效果，注意 Panzoom 缩放时标记也会缩放 */
+/* 这个 hover 效果可能在缩放后感觉不明显，可以考虑调整或移除 */
+.tea-marker:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* 弹出窗口样式 (保持不变) */
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    padding: 25px;
+    border: 1px solid #ddd;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+#popup-img {
+  border-radius: 4px;
+}
+
+#popup-title {
+  margin-top: 0;
+  color: #386641;
+}
+
+#popup-person-title {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    color: #555;
+}
